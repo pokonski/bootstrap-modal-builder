@@ -1,0 +1,14 @@
+body {
+  padding-top: 20px;
+}
+
+pre.prettyprint{
+  margin-bottom: 25px;
+}
+
+.footer {
+  margin-top: 45px;
+  padding: 35px 0 36px;
+  border-top: 1px solid
+  #E5E5E5;
+}

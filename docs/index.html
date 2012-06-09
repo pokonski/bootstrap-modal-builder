@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap Modal Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Le styles -->
+  <link href="assets/bootstrap.css" rel="stylesheet">
+  <link href="assets/style.css" rel="stylesheet">
+  <link href="assets/prettify.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+<div class="container">
+  <section id="buttonGroups">
+    <div class="page-header">
+      <h1>Modal builder <small>Create modals without any static HTML placeholders</small></h1>
+    </div>
+    <div class="row">
+      <div class="span3">
+        <h3>About</h3>
+        <p>This plugin allows you to create modals dynamically, without cluttering your source with static HTML for modals. Everything is created in JavaScript and fully customizable.</p>
+        <a href="../bootstrap-modal-builder.js" target="_blank" class="btn">Download file</a>
+      </div>
+      <div class="span9">
+        <h2>Basic example</h2>
+        <div class="well" style="text-align: center">
+          <button class="btn btn-large btn-inverse" id="basic-example">Show modal</button>
+        </div>
+        <h2>Using bootstrap-modal-builder.js</h2>
+        <p>Code for the example above:</p>
+        <pre class="prettyprint lang-js">$.modal({
+  title: "Example title",
+  content: "Here's some important message you must read.",
+  buttons: [
+    {
+      text: "Roger that",
+      close: true
+    }
+  ]
+}).modal('show');</pre>
+        <h2>Options</h2>
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th style="width: 100px;">Name</th>
+            <th style="width: 50px;">type</th>
+            <th style="width: 50px;">default</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>title</td>
+              <td>string</td>
+              <td>""</td>
+              <td>Title of the modal in <code>.modal-header</code>.</td>
+            </tr>
+            <tr>
+              <td>content</td>
+              <td>string</td>
+              <td>""</td>
+              <td>Content of the modal, can be a HTML string.</td>
+            </tr>
+            <tr>
+              <td>header</td>
+              <td>boolean</td>
+              <td>true</td>
+              <td>Display the <code>.modal-header</code>. If hidden, title and <code>.close</code> button are invisible</td>
+            </tr>
+            <tr>
+              <td>footer</td>
+              <td>boolean</td>
+              <td>true</td>
+              <td>Display the <code>.modal-footer</code>. Please note that when <code>false</code> buttons will also not appear.</td>
+            </tr>
+            <tr>
+              <td>dispose</td>
+              <td>boolean</td>
+              <td>true</td>
+              <td>Remove the actual HTML element with modal on close. Set to <code>false</code> if you want to reuse the same modal multiple times.</td>
+            </tr>
+            <tr>
+              <td>buttons</td>
+              <td>array</td>
+              <td>[]</td>
+              <td>List of buttons to create in the modal. See the table below for button specific options.</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Options for buttons</h2>
+        <p>These options apply to objects in <code>buttons</code> array.</p>
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th style="width: 100px;">Name</th>
+            <th style="width: 50px;">type</th>
+            <th style="width: 50px;">default</th>
+            <th>description</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>text</td>
+              <td>string</td>
+              <td>""</td>
+              <td>Text visible on the button.</td>
+            </tr>
+            <tr>
+              <td>href</td>
+              <td>string</td>
+              <td>"#"</td>
+              <td>Link used in the <code>href</code> attribute.</td>
+            </tr>
+            <tr>
+              <td>close</td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>When <code>true</code>, pressing the button will also close the modal. Behind the scenes it adds <code>data-dismiss="modal"</code>.</td>
+            </tr>
+            <tr>
+              <td>classes</td>
+              <td>string</td>
+              <td>""</td>
+              <td>
+                List of classes applied to the button HTML tag. For example, if you want a button to be primary and large, set it to: <code>btn-primary btn-large</code>.
+                <code>btn</code> class is applied by default so you don't have to add it here.
+              </td>
+            </tr>
+            <tr>
+              <td>html</td>
+              <td>string</td>
+              <td>""</td>
+              <td>Custom HTML for the button. Use it if your button tag needs more customization. If supplied, the <code>text</code>, <code>href</code> and <code>classes</code> options are ignored.</td>
+            </tr>
+            <tr>
+              <td>click</td>
+              <td>function</td>
+              <td>undefined</td>
+              <td>Callback function fired when a button is clicked.</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Full example</h2>
+        <p>Method with all options possible:</p>
+        <pre class="prettyprint lang-js">$.modal({
+  title: "Full example title",
+  content: "&lt;p&gt;Rich content with some &lt;strong&gt;HTML&lt;/strong&gt; tags &lt;em&gt;here&lt;/em&gt; and &lt;u&gt;there&lt;/u&gt;&lt;/p&gt;",
+  header: true,
+  footer: true,
+  dispose: true,
+  buttons: [
+    {
+      text: "Yup, I got it",
+      href: "#",
+      classes: "btn-primary",
+      click: function(e) {
+        alert("Seriously, I got it!");
+      }
+    },
+    {
+      text: "Get me out of here",
+      href: "#",
+      close: true
+    },
+    {
+      html: "&lt;a href='#' data-dismiss='modal' class='btn btn-danger'>Danger, custom button</a>",
+      click: function() {
+        alert("Custom  button");
+      }
+    }
+  ]
+}).modal('show');</pre>
+
+        <div class="well" style="text-align: center">
+          <button class="btn btn-large btn-danger" id="full-example">Show</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer
+ ================================================== -->
+  <footer class="footer">
+    <p>Created by <a href="https://github.com/pokonski" target="_blank">Piotrek Okoński</a>.</p>
+    <p>Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a></a>.</p>
+  </footer>
+
+</div><!-- /container -->
+
+
+<script src="assets/jquery.js"></script>
+<script src="assets/bootstrap-modal.js"></script>
+<script src="../bootstrap-modal-builder.js"></script>
+<script src="assets/application.js"></script>
+<script type="text/javascript" src="assets/prettify.js"></script>
+
+
+</body>
+</html>
