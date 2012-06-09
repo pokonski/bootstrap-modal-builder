@@ -139,7 +139,7 @@
               <td>html</td>
               <td>string</td>
               <td>""</td>
-              <td>Custom HTML for the button. Use it if your button tag needs more customization. If supplied, the <code>text</code>, <code>href</code> and <code>classes</code> options are ignored.</td>
+              <td>Custom HTML for the button. Use it if your button tag needs more tweaking. Remember that the <code>text</code>, <code>href</code> and <code>classes</code> options take precedence and can still modify the custom HTML. For example additional <code>classes</code> will be appended to the custom element.</td>
             </tr>
             <tr>
               <td>click</td>
@@ -173,6 +173,8 @@
     },
     {
       html: "&lt;a href='#' data-dismiss='modal' class='btn btn-danger'>Danger, custom button</a>",
+      text: "Achtung!",
+      classes: "btn-large",
       click: function() {
         alert("Custom  button");
       }

@@ -36,6 +36,8 @@ $(document).on('click', '#full-example', function () {
       },
       {
         html: "<a href='#' data-dismiss='modal' class='btn btn-danger'>Danger, custom button</a>",
+        text: "Achtung!",
+        classes: "btn-large",
         click: function() {
           alert("Custom  button");
         }

@@ -32,13 +32,13 @@
     var html;
     button = $.extend({}, $.modal.defaults.button, button)
 
-    if (button.html) {
-      html = $(button.html)
-    } else {
-      html = $(options.buttonTemplate).text(button.text).attr('href', button.href);
-      if (button.classes) html.addClass(button.classes)
-      if (button.close) html.attr('data-dismiss','modal')
-    }
+    html = $(button.html ? button.html : options.buttonTemplate)
+
+    if (button.text) html.text(button.text)
+    if (button.href) html.attr('href', button.href)
+
+    if (button.classes) html.addClass(button.classes)
+    if (button.close) html.attr('data-dismiss','modal')
     if (button.click) html.on('click', button.click)
 
     return html
